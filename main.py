@@ -29,6 +29,9 @@ def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(POEM)
+    with open("/output/entry.txt", encoding="utf-8", newline="") as f:
+        if f.read() != POEM:
+            raise ValueError("written entry does not round-trip exactly to POEM")
 
 
 if __name__ == "__main__":
